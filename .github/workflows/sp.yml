@@ -1,7 +1,11 @@
-name: GitHub Actions Demo
-on: [push]
+name: run dev sp
+on: 
+  push:
+     beanches:[ master ] 
 jobs:
   Explore-GitHub-Actions:
+    build:
+    name:build image
     runs-on: ubuntu-latest
     steps:
       - name: Configure AWS credentials
