@@ -1,10 +1,10 @@
 name: run dev sp
 on: 
   push:
-     beanches:[master] 
+     beanches:[ master ] 
 jobs:
   build:
-    name:Buil image
+    name:build image
     steps:
       - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
