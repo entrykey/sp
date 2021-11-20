@@ -23,10 +23,21 @@ public class User {
 
 	@Column(length = 10)
 	private String phone;
-
+	
+	@Column(length = 1)
+	private String gender;
+	
 	private Boolean enabled;
 
 	private Boolean token;
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
 
 	public Integer getId() {
 		return id;
