@@ -1,1 +1,0 @@
-INSERT INTO `user` (`id`, `email`, `enabled`, `password`, `phone`, `token`, `username`) VALUES ('2', 'mailmydeveloper@gmail.com', b'1', 'admin123', '9809582099', b'1', 'mujeeb');
