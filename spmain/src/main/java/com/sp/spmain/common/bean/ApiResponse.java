@@ -2,13 +2,13 @@ package com.sp.spmain.common.bean;
 
 public class ApiResponse {
 	
-	 private String status;
+	 private String status="200";
 	 
-	 private String message;
+	 private String message="Success";
 	 
 	 private Object data;
 	 
-	 private Object error;
+	 private Boolean errorFlag=false;
 	 
 	 public String getStatus() {
 		return status;
@@ -34,12 +34,21 @@ public class ApiResponse {
 		this.data = data;
 	}
 
-	public Object getError() {
-		return error;
+	public Boolean getErrorFlag() {
+		return errorFlag;
 	}
 
-	public void setError(Object error) {
-		this.error = error;
+	public void setErrorFlag(Boolean errorFlag) {
+		this.errorFlag = errorFlag;
 	}
-
+	
+	
+	public ApiResponse errorset(String status,String message) {
+		ApiResponse rt = new ApiResponse();
+		rt.setStatus(status);
+		rt.setData(null);
+		rt.setErrorFlag(true);
+		rt.setMessage(message);
+		return rt;
+	}
 }
