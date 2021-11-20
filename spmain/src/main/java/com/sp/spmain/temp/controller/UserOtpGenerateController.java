@@ -30,8 +30,8 @@ public class UserOtpGenerateController {
 			apiResponse.setData(userRegTempService.generate(userTempGenOtpDto));
 			return new ResponseEntity<>(apiResponse, HttpStatus.OK);
 		}catch(Exception e) {
-			apiResponse=apiResponse.errorset("500",e.getLocalizedMessage());
-			return new ResponseEntity<>(apiResponse, HttpStatus.INTERNAL_SERVER_ERROR);						
+			apiResponse=apiResponse.errorset(e.getLocalizedMessage());
+			return new ResponseEntity<>(apiResponse, HttpStatus.OK);						
 		}
     }
 	
@@ -39,43 +39,26 @@ public class UserOtpGenerateController {
 	@PostMapping
     public ResponseEntity<ApiResponse> validateotp(@RequestBody UserTempGenOtpDto userTempGenOtpDto)throws ServiceException {
 		ApiResponse apiResponse = new ApiResponse();
-		try {
-			System.out.println(userTempGenOtpDto);
+		try {		
 			apiResponse.setData(userRegTempService.validate(userTempGenOtpDto));
 			return new ResponseEntity<>(apiResponse, HttpStatus.OK);
 		}catch(Exception e) {
-			apiResponse=apiResponse.errorset("500",e.getLocalizedMessage());
-			return new ResponseEntity<>(apiResponse, HttpStatus.INTERNAL_SERVER_ERROR);						
+			apiResponse=apiResponse.errorset(e.getLocalizedMessage());
+			return new ResponseEntity<>(apiResponse, HttpStatus.OK);						
 		}
     }
 	
 	@RequestMapping("/reguser")
 	@PostMapping
-    public void registerUser(@RequestBody UserRegDto userRegDto) {
-		userRegTempService.userRegister(userRegDto);
+    public ResponseEntity<ApiResponse> registerUser(@RequestBody UserRegDto userRegDto) throws ServiceException {
+		ApiResponse apiResponse = new ApiResponse();
+		try {		
+			apiResponse.setData(userRegTempService.userRegister(userRegDto));
+			return new ResponseEntity<>(apiResponse, HttpStatus.OK);
+		}catch(Exception e) {
+			apiResponse=apiResponse.errorset(e.getLocalizedMessage());
+			return new ResponseEntity<>(apiResponse, HttpStatus.OK);						
+		}
     }
 	
-	/*
-	@GetMapping("/qubbit/getSurveyTemplates")
-	public ResponseEntity<ApiResponse> getSurveyTemplates() throws ServiceException {
-		ApiResponse apiResponse = new ApiResponse();
-		try {			
-			if(superAdminService.getPropertyStatus(IConstant.QUBBIT_PROPERTY_NAME))
-			{
-				List<QubbitSurveyDetailsDTO> QubbitSurveyDetailsList =  qubbitService.fetchSurveyTemplates();
-				apiResponse.setResponse(QubbitSurveyDetailsList);
-				return new ResponseEntity<>(apiResponse, HttpStatus.OK);
-			}
-			else {
-				apiResponse.setErrorFlag(true);
-				apiResponse.setResponseMessage("Qubbit Not Enabled in Ldesk!");
-				return new ResponseEntity<>(apiResponse, HttpStatus.INTERNAL_SERVER_ERROR);	
-			}			
-		}catch(Exception e) {
-			apiResponse.setErrorFlag(true);
-			apiResponse.setResponseMessage(e.getLocalizedMessage());
-			return new ResponseEntity<>(apiResponse, HttpStatus.INTERNAL_SERVER_ERROR);						
-		}				
-	}
-	*/
 }

@@ -54,14 +54,25 @@ public class UserRegTempService {
 			 }
 	    }
 	 
-	 public Boolean userRegister(UserRegDto ur) {
-		 User user=new User();
+	 public Boolean userRegister(UserRegDto ur) throws ValidationException{
+		 
+		 if(validate.validatePhoneNum(ur.getPhone())==false) throw new ValidationException("Not a valid phone found");
+		 if(validate.email(ur.getEmail())==false) throw new ValidationException("Not a valid email found");
+		 if(validate.gender(ur.getGender())==false) throw new ValidationException("Not a valid gender found");
+		 if(validate.username(ur.getName())==false) throw new ValidationException("Not a valid name found");
+		
+		 User user = new User();
+		 user=userRep.findByPhone(ur.getPhone());
+		 if(user!=null) throw new ValidationException("user already registered with this number");
+			 
+		 user=new User();
 		 user.setPhone(ur.getPhone());
 		 user.setEmail(ur.getEmail());
 		 user.setGender(ur.getGender());
 		 user.setUsername(ur.getName());
 		 userRep.save(user);
 		 return true;
+
 	 }
 
 }

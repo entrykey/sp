@@ -7,5 +7,6 @@ import com.sp.spmain.model.User;
 
 @Repository
 public interface UserRepo extends JpaRepository<User, Long> {
-
+	
+	User findByPhone(String mobile);
 }

@@ -43,9 +43,9 @@ public class ApiResponse {
 	}
 	
 	
-	public ApiResponse errorset(String status,String message) {
+	public ApiResponse errorset(String message) {
 		ApiResponse rt = new ApiResponse();
-		rt.setStatus(status);
+		rt.setStatus("200");
 		rt.setData(null);
 		rt.setErrorFlag(true);
 		rt.setMessage(message);
