@@ -3,6 +3,7 @@ package com.sp.spmain.temp.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.HttpStatus.Series;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,10 +32,9 @@ public class UserOtpGenerateController {
 			return new ResponseEntity<>(apiResponse, HttpStatus.OK);
 		}catch(Exception e) {
 			apiResponse=apiResponse.errorset(e.getLocalizedMessage());
-			return new ResponseEntity<>(apiResponse, HttpStatus.OK);						
+			return new ResponseEntity<>(apiResponse, HttpStatus.BAD_REQUEST);						
 		}
     }
-	
 	@RequestMapping("/valotp")
 	@PostMapping
     public ResponseEntity<ApiResponse> validateotp(@RequestBody UserTempGenOtpDto userTempGenOtpDto)throws ServiceException {
@@ -44,7 +44,7 @@ public class UserOtpGenerateController {
 			return new ResponseEntity<>(apiResponse, HttpStatus.OK);
 		}catch(Exception e) {
 			apiResponse=apiResponse.errorset(e.getLocalizedMessage());
-			return new ResponseEntity<>(apiResponse, HttpStatus.OK);						
+			return new ResponseEntity<>(apiResponse, HttpStatus.BAD_REQUEST);						
 		}
     }
 	
@@ -57,7 +57,7 @@ public class UserOtpGenerateController {
 			return new ResponseEntity<>(apiResponse, HttpStatus.OK);
 		}catch(Exception e) {
 			apiResponse=apiResponse.errorset(e.getLocalizedMessage());
-			return new ResponseEntity<>(apiResponse, HttpStatus.OK);						
+			return new ResponseEntity<>(apiResponse, HttpStatus.BAD_REQUEST);						
 		}
     }
 	
