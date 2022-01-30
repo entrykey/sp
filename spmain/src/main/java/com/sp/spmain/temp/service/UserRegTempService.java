@@ -1,7 +1,7 @@
 package com.sp.spmain.temp.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import com.sp.spmain.common.bean.Validations;
 import com.sp.spmain.exception.ValidationException;
@@ -13,7 +13,7 @@ import com.sp.spmain.temp.repo.UserRegTempRepo;
 import com.sp.spmain.temp.repo.UserRepo;
 
 
-@Component
+@Service
 public class UserRegTempService {
 	
 	 @Autowired UserRegTempRepo userTempRep;
