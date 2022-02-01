@@ -12,9 +12,12 @@ public class Shop {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
-	
+
 	@Column(length = 100)
 	private String shopName;
+	
+	@Column(length = 100)
+	private String shopCode;
 	
 	@Column(length = 200)
 	private String geolocation;
@@ -34,9 +37,17 @@ public class Shop {
 	@Column(length = 100)
 	private String lastupdated;
 	
-	@Column(length = 100)
-	private String qrcode;
+	@Column
+	private Boolean status;
 	
+	public Boolean getStatus() {
+		return status;
+	}
+
+	public void setStatus(Boolean status) {
+		this.status = status;
+	}
+
 	public Integer getId() {
 		return id;
 	}
@@ -101,12 +112,13 @@ public class Shop {
 		this.lastupdated = lastupdated;
 	}
 
-	public String getQrcode() {
-		return qrcode;
+	public String getShopCode() {
+		return shopCode;
 	}
 
-	public void setQrcode(String qrcode) {
-		this.qrcode = qrcode;
+	public void setShopCode(String shopCode) {
+		this.shopCode = shopCode;
 	}
+
 
 }

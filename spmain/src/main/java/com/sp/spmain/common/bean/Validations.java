@@ -47,5 +47,20 @@ public class Validations {
 		else
 		return false;
 	}
+	
+	public Boolean shopDetails(String shopDetails) {
+		if(shopDetails!=null && valNumChar(shopDetails))
+		return true;
+		else
+		return false;
+	}
+	
+	public Boolean valNumChar(String str) {
+		if(str.matches("^[a-zA-Z0-9]+$"))
+			return true;
+			else
+			return false;
+	}
+	
 
 }
