@@ -1,10 +1,14 @@
 package com.sp.spmain.model;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Shop {
@@ -40,6 +44,19 @@ public class Shop {
 	@Column
 	private Boolean status;
 	
+	@OneToMany
+	@JoinColumn(name = "shop")
+	private Set<Product> prodcut;
+	
+	
+	public Set<Product> getProdcut() {
+		return prodcut;
+	}
+
+	public void setProdcut(Set<Product> prodcut) {
+		this.prodcut = prodcut;
+	}
+
 	public Boolean getStatus() {
 		return status;
 	}
