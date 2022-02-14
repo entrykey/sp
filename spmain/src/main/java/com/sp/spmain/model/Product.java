@@ -1,7 +1,10 @@
 package com.sp.spmain.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -9,8 +12,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Product {
+public class Product implements Serializable{
 	
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
@@ -33,17 +38,26 @@ public class Product {
 	@Column(length = 100)
 	private String image;
 	
-	@ManyToOne
-    @JoinColumn(name = "id", insertable = false, updatable = false)
-	private Shop shop;
+	@Column
+	private Boolean status;
 	
-	public Shop getShop() {
-		return shop;
+	public Boolean getStatus() {
+		return status;
 	}
 
-	public void setShop(Shop shop) {
-		this.shop = shop;
+	public void setStatus(Boolean status) {
+		this.status = status;
 	}
+
+	 @ManyToOne(fetch = FetchType.LAZY, optional = false)
+     @JoinColumn(name = "id", insertable = false, updatable = false)
+		
+	 private Shop shop;
+	 
+	 public Shop getShop() { return shop; }
+	  
+	 public void setShop(Shop shop) { this.shop = shop; }
+	 
 
 	public Integer getId() {
 		return id;

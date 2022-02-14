@@ -55,8 +55,22 @@ public class Validations {
 		return false;
 	}
 	
+	public Boolean prdoDetails(String prodDetails) {
+		if(prodDetails!=null && valNum(prodDetails) && prodDetails.length()==13)
+		return true;
+		else
+		return false;
+	}
+	
 	public Boolean valNumChar(String str) {
 		if(str.matches("^[a-zA-Z0-9]+$"))
+			return true;
+			else
+			return false;
+	}
+	
+	public Boolean valNum(String str) {
+		if(str.matches("^[0-9]+$"))
 			return true;
 			else
 			return false;

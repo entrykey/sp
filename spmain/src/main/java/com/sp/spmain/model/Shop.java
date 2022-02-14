@@ -1,17 +1,21 @@
 package com.sp.spmain.model;
 
+import java.io.Serializable;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Shop {
+public class Shop implements Serializable{
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -44,18 +48,9 @@ public class Shop {
 	@Column
 	private Boolean status;
 	
-	@OneToMany
-	@JoinColumn(name = "shop")
+	@OneToMany(mappedBy = "shop", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
 	private Set<Product> prodcut;
-	
-	
-	public Set<Product> getProdcut() {
-		return prodcut;
-	}
 
-	public void setProdcut(Set<Product> prodcut) {
-		this.prodcut = prodcut;
-	}
 
 	public Boolean getStatus() {
 		return status;
