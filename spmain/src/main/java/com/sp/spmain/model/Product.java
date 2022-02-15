@@ -50,8 +50,7 @@ public class Product implements Serializable{
 	}
 
 	 @ManyToOne(fetch = FetchType.LAZY, optional = false)
-     @JoinColumn(name = "id", insertable = false, updatable = false)
-		
+     @JoinColumn(name = "shopid", insertable = false, updatable = false)
 	 private Shop shop;
 	 
 	 public Shop getShop() { return shop; }

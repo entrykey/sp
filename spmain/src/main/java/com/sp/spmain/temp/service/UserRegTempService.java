@@ -11,6 +11,7 @@ import com.sp.spmain.temp.dto.UserTempGenOtpDto;
 import com.sp.spmain.temp.model.UserRegTemp;
 import com.sp.spmain.temp.repo.UserRegTempRepo;
 import com.sp.spmain.temp.repo.UserRepo;
+import com.sp.spmain.utility.Utility;
 
 
 @Service
@@ -18,7 +19,9 @@ public class UserRegTempService {
 	
 	 @Autowired UserRegTempRepo userTempRep;
 	 @Autowired UserRepo userRep;
+	 @Autowired OtpServiceImpl otpServiceImpl;
 	 Validations validate = new Validations();
+	 
 	 
 	 public Boolean generate(UserTempGenOtpDto td) throws ValidationException{
 		 
@@ -26,14 +29,15 @@ public class UserRegTempService {
 		 UserRegTemp ob = new UserRegTemp();
 		 ob=userTempRep.findByPhone(td.getPhone());
 		 if(ob!=null) {
-			 ob.setOtp("0011");
+			 ob.setOtp(Utility.getRandomNumber());
 		 }
 		 else {
 			 ob = new UserRegTemp();
 			 ob.setPhone(td.getPhone());
-			 ob.setOtp("0011");
+			 ob.setOtp(Utility.getRandomNumber());
 		 }
 		 userTempRep.save(ob);
+		 otpServiceImpl.sendOtp(ob.getPhone(),ob.getOtp());
 		 return true;
 		 }
 		 else {
