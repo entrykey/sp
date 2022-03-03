@@ -20,6 +20,8 @@ public class ProductServiceImpl implements ProductService{
 		if(validate.prdoDetails(barcode)==false) throw new ValidationException("Not a valid details");
 		 Product product= productRepo.findByBarcode(barcode.trim());
 		 if(product==null) throw new ValidationException("No Data found");
+		 product.setUnitInfo(product.getProductUnit().getNos()+" "+product.getProductUnit().getUnitName());
+		 product.setProductUnit(null);
 		 return product;
 	}
 		

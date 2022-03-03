@@ -10,13 +10,73 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 
 
 @Entity 
 public class Product implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Integer id;
+	
+	@Column(length = 20)
+	private String barcode;
+	
+	@Column(length = 100)
+	private String name;
+	
+	@Column
+	private Double mrp;
+	
+	@Column
+	private Double cgst;
+	
+	@Column
+	private Double sgst;
+	
+	@Column
+	private Double offerPrice;
+	
+	@Column
+	private Double percentage;
+	
+	@Column(length = 100)
+	private String image;
+	
+	@Transient
+	private String unitInfo;
+	
+	public String getUnitInfo() {
+		return unitInfo;
+	}
 
+	public void setUnitInfo(String unitInfo) {
+		this.unitInfo = unitInfo;
+	}
+
+	public ProductUnit getProductUnit() {
+		return productUnit;
+	}
+
+	public void setProductUnit(ProductUnit productUnit) {
+		this.productUnit = productUnit;
+	}
+
+	@Column
+	private Boolean status;
+	
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name = "shopId", insertable = false, updatable = false)
+	private Shop shop;
+	
+	@OneToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name = "unitId", insertable = false, updatable = false)
+	private ProductUnit productUnit;
+	 	
 	public Integer getId() {
 		return id;
 	}
@@ -105,39 +165,5 @@ public class Product implements Serializable{
 		this.shop = shop;
 	}
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer id;
 	
-	@Column(length = 20)
-	private String barcode;
-	
-	@Column(length = 100)
-	private String name;
-	
-	@Column
-	private Double mrp;
-	
-	@Column
-	private Double cgst;
-	
-	@Column
-	private Double sgst;
-	
-	@Column
-	private Double offerPrice;
-	
-	@Column
-	private Double percentage;
-	
-	@Column(length = 100)
-	private String image;
-	
-	@Column
-	private Boolean status;
-	
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name = "shopid", insertable = false, updatable = false)
-	private Shop shop;
-	 	
 }

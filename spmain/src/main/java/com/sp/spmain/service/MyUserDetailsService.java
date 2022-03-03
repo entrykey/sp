@@ -3,8 +3,9 @@ package com.sp.spmain.service;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
-@service
+@Service
 public class MyUserDetailsService implements UserDetailsService{
 
 	@Override
