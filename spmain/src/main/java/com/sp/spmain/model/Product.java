@@ -11,52 +11,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-@Entity
+
+@Entity 
 public class Product implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer id;
-	
-	@Column(length = 20)
-	private String barcode;
-	
-	@Column(length = 100)
-	private String name;
-	
-	@Column
-	private Long mrp;
-	
-	@Column
-	private Long offerPrice;
-	
-	@Column
-	private Long percentage;
-	
-	@Column(length = 100)
-	private String image;
-	
-	@Column
-	private Boolean status;
-	
-	public Boolean getStatus() {
-		return status;
-	}
-
-	public void setStatus(Boolean status) {
-		this.status = status;
-	}
-
-	 @ManyToOne(fetch = FetchType.LAZY, optional = false)
-     @JoinColumn(name = "shopid", insertable = false, updatable = false)
-	 private Shop shop;
-	 
-	 public Shop getShop() { return shop; }
-	  
-	 public void setShop(Shop shop) { this.shop = shop; }
-	 
 
 	public Integer getId() {
 		return id;
@@ -82,27 +41,43 @@ public class Product implements Serializable{
 		this.name = name;
 	}
 
-	public Long getMrp() {
+	public Double getMrp() {
 		return mrp;
 	}
 
-	public void setMrp(Long mrp) {
+	public void setMrp(Double mrp) {
 		this.mrp = mrp;
 	}
 
-	public Long getOfferPrice() {
+	public Double getCgst() {
+		return cgst;
+	}
+
+	public void setCgst(Double cgst) {
+		this.cgst = cgst;
+	}
+
+	public Double getSgst() {
+		return sgst;
+	}
+
+	public void setSgst(Double sgst) {
+		this.sgst = sgst;
+	}
+
+	public Double getOfferPrice() {
 		return offerPrice;
 	}
 
-	public void setOfferPrice(Long offerPrice) {
+	public void setOfferPrice(Double offerPrice) {
 		this.offerPrice = offerPrice;
 	}
 
-	public Long getPercentage() {
+	public Double getPercentage() {
 		return percentage;
 	}
 
-	public void setPercentage(Long percentage) {
+	public void setPercentage(Double percentage) {
 		this.percentage = percentage;
 	}
 
@@ -114,6 +89,55 @@ public class Product implements Serializable{
 		this.image = image;
 	}
 
+	public Boolean getStatus() {
+		return status;
+	}
 
+	public void setStatus(Boolean status) {
+		this.status = status;
+	}
+
+	public Shop getShop() {
+		return shop;
+	}
+
+	public void setShop(Shop shop) {
+		this.shop = shop;
+	}
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Integer id;
 	
+	@Column(length = 20)
+	private String barcode;
+	
+	@Column(length = 100)
+	private String name;
+	
+	@Column
+	private Double mrp;
+	
+	@Column
+	private Double cgst;
+	
+	@Column
+	private Double sgst;
+	
+	@Column
+	private Double offerPrice;
+	
+	@Column
+	private Double percentage;
+	
+	@Column(length = 100)
+	private String image;
+	
+	@Column
+	private Boolean status;
+	
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name = "shopid", insertable = false, updatable = false)
+	private Shop shop;
+	 	
 }
