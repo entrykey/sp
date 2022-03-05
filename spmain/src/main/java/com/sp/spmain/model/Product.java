@@ -10,7 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
 
@@ -73,7 +72,7 @@ public class Product implements Serializable{
 	@JoinColumn(name = "shopId", insertable = false, updatable = false)
 	private Shop shop;
 	
-	@OneToOne(fetch = FetchType.LAZY, optional = false)
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "unitId", insertable = false, updatable = false)
 	private ProductUnit productUnit;
 	 	

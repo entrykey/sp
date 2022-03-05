@@ -17,7 +17,7 @@ public class UserRegTemp {
 	private String phone;
 	
 	@Column(length = 5)
-	private String otp="0011";
+	private String otp;
 
 	public Integer getId() {
 		return id;

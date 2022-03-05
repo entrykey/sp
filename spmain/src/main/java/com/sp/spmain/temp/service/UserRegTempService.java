@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import com.sp.spmain.common.bean.Validations;
 import com.sp.spmain.exception.ValidationException;
 import com.sp.spmain.model.User;
+import com.sp.spmain.temp.dto.OtpVerificationDto;
 import com.sp.spmain.temp.dto.UserRegDto;
 import com.sp.spmain.temp.dto.UserTempGenOtpDto;
 import com.sp.spmain.temp.model.UserRegTemp;
@@ -45,13 +46,30 @@ public class UserRegTempService {
 		 }
 	    }
 	 
-	 public Boolean validate(UserTempGenOtpDto td) throws ValidationException{
+	 public OtpVerificationDto validate(UserTempGenOtpDto td) throws ValidationException{
 			 if(validate.validatePhoneNum(td.getPhone()) && validate.validateOtp(td.getOtp())) {
 				 UserRegTemp dataobj=userTempRep.findByPhoneAndOtp(td.getPhone(),td.getOtp());
-				 if(dataobj!=null)
-					 return true;
-				 else
-					 throw new ValidationException("No data found");
+				 if(dataobj!=null) {
+					 OtpVerificationDto otpVerificationDto= new OtpVerificationDto();
+					 otpVerificationDto.setIsOtpValid(true);
+					 otpVerificationDto.setIsRegistered(false);
+					 otpVerificationDto.setUserRegDto(null);
+					 User user=userRep.findByPhone(td.getPhone());
+					 if(user!=null) {
+						 UserRegDto userRegDto= new UserRegDto();
+						 otpVerificationDto.setIsRegistered(true);
+						 userRegDto.setName(user.getUsername());
+						 userRegDto.setPhone(user.getPhone());
+						 userRegDto.setEmail(user.getEmail());
+						 userRegDto.setGender(user.getGender());
+						 otpVerificationDto.setUserRegDto(userRegDto);
+						
+					 }
+					 return otpVerificationDto;
+				 }
+				 else {
+					 throw new ValidationException("No match otp found for this number");
+				 }
 			 }
 			 else {
 				 throw new ValidationException("No valid input data found");

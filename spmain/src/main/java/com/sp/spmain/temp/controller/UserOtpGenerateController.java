@@ -31,7 +31,7 @@ public class UserOtpGenerateController {
 			return new ResponseEntity<>(apiResponse, HttpStatus.OK);
 		}catch(Exception e) {
 			apiResponse=apiResponse.errorset(e.getLocalizedMessage());
-			return new ResponseEntity<>(apiResponse, HttpStatus.BAD_REQUEST);						
+			return new ResponseEntity<>(apiResponse, HttpStatus.ACCEPTED);						
 		}
     }
 	@RequestMapping("/valotp")
@@ -43,7 +43,7 @@ public class UserOtpGenerateController {
 			return new ResponseEntity<>(apiResponse, HttpStatus.OK);
 		}catch(Exception e) {
 			apiResponse=apiResponse.errorset(e.getLocalizedMessage());
-			return new ResponseEntity<>(apiResponse, HttpStatus.BAD_REQUEST);						
+			return new ResponseEntity<>(apiResponse, HttpStatus.ACCEPTED);						
 		}
     }
 	
@@ -56,7 +56,7 @@ public class UserOtpGenerateController {
 			return new ResponseEntity<>(apiResponse, HttpStatus.OK);
 		}catch(Exception e) {
 			apiResponse=apiResponse.errorset(e.getLocalizedMessage());
-			return new ResponseEntity<>(apiResponse, HttpStatus.BAD_REQUEST);						
+			return new ResponseEntity<>(apiResponse, HttpStatus.ACCEPTED);						
 		}
     }
 	
