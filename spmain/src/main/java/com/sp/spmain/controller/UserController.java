@@ -21,12 +21,12 @@ public class UserController {
 		@Autowired
 	    OtpServiceImpl otpServiceImpl;
 	    
-		@GetMapping("/")
-	    public String welcome() {
-			
-			
-	        return "Welcome to smart Pay...";
-	    }
+		/*
+		 * @GetMapping("/") public String welcome() {
+		 * 
+		 * 
+		 * return "Welcome to smart Pay..."; }
+		 */
 		
 		@GetMapping(value = "/otp")
 		public Boolean opttest() { 

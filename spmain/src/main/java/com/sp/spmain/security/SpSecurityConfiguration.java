@@ -31,10 +31,14 @@ public class SpSecurityConfiguration extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
+		
 		.authorizeRequests()
-		.antMatchers("/spprod/**","/spshop/**","/temp/**").permitAll()
+		.antMatchers("/assets/**","/","/spprod/**","/spshop/**","/temp/**").permitAll()
+		.antMatchers("/**").authenticated()
 		.and()
-		.formLogin().and().csrf().disable();
+		.formLogin()
+		.loginPage("/")
+		.and().csrf().disable();
 		
 	}
 	
