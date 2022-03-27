@@ -6,7 +6,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Entity
+import lombok.Data;
+
+@Entity @Data
 public class UserRegTemp {
 
 	@Id
@@ -18,29 +20,5 @@ public class UserRegTemp {
 	
 	@Column(length = 5)
 	private String otp;
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public String getPhone() {
-		return phone;
-	}
-
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-
-	public String getOtp() {
-		return otp;
-	}
-
-	public void setOtp(String otp) {
-		this.otp = otp;
-	}
 
 }

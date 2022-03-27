@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="no one">
+    <meta name="generator" content="Hugo 0.88.1">
+	<title th:text="${title}">Headers</title>
+
+<link rel="stylesheet" type="text/css" th:href="@{/assets/dist/css/bootstrap.min.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/assets/dist/bootstrap-icons/bootstrap-icons.css}" />
+
+<link rel="stylesheet" type="text/css" th:href="@{/assets/dist/css/style.css}" />
+<script th:src="@{/assets/angular/angular.min.js}"></script>
+<script th:src="@{/assets/angular/spapp.js}"></script>
+
+</head>
+<body>
+
+ 
+<header th:replace="body/header::head"></header><!-- End Header -->
+<div th:replace="body/sidebar::side"></div>
+
+<div ng-view></div>
+
+
+
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>  
+<script th:src="@{/assets/dist/js/bootstrap.bundle.min.js}" crossorigin="anonymous"></script>
+<script th:src="@{/assets/dist/js/main.js}"></script>    
+  </body>
+</html>

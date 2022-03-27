@@ -10,7 +10,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import com.sp.spmain.service.MyUserDetailsService;
+import com.sp.spmain.service.Impl.MyUserDetailsService;
+
+
 
 @EnableWebSecurity
 public class SpSecurityConfiguration extends WebSecurityConfigurerAdapter{
@@ -20,11 +22,7 @@ public class SpSecurityConfiguration extends WebSecurityConfigurerAdapter{
 	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		//auth.userDetailsService(myUserDetailsService);
-		auth.inMemoryAuthentication()
-		.withUser("mujeeb")
-		.password("Roko")
-		.roles("admin_role");
+		auth.userDetailsService(myUserDetailsService);
 		
 	}
 	
@@ -33,11 +31,11 @@ public class SpSecurityConfiguration extends WebSecurityConfigurerAdapter{
 		http
 		
 		.authorizeRequests()
-		.antMatchers("/assets/**","/","/spprod/**","/spshop/**","/temp/**").permitAll()
-		.antMatchers("/**").authenticated()
+		.antMatchers("/assets/**","/templates/**","/resources/**","/spprod/**","/spshop/**","/sporder/**","/temp/**").permitAll()
+		//.antMatchers("/**").authenticated()
 		.and()
 		.formLogin()
-		.loginPage("/")
+		//.loginPage("/")
 		.and().csrf().disable();
 		
 	}

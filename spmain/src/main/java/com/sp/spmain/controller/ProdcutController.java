@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.sp.spmain.common.bean.ApiResponse;
 import com.sp.spmain.exception.ServiceException;
+import com.sp.spmain.service.Impl.MyUserDetailsService;
 import com.sp.spmain.service.Impl.ProductServiceImpl;
 
 
@@ -18,6 +19,23 @@ import com.sp.spmain.service.Impl.ProductServiceImpl;
 public class ProdcutController {
 	
 	@Autowired ProductServiceImpl productServiceImpl;
+	
+	@Autowired MyUserDetailsService myUserDetailsService;
+	
+	
+	@PostMapping({"/s"})
+    public ResponseEntity<ApiResponse> getByShopIds() throws ServiceException {
+		ApiResponse apiResponse = new ApiResponse();
+		try {
+			apiResponse.setData(myUserDetailsService.loadUserByUsername("mujeeb"));
+			return new ResponseEntity<>(apiResponse, HttpStatus.OK);
+		}catch(Exception e) {
+			apiResponse=apiResponse.errorset(e.getLocalizedMessage());
+			return new ResponseEntity<>(apiResponse, HttpStatus.ACCEPTED);						
+		}
+    }
+
+	
 	
 	@PostMapping({"/{details}"})
     public ResponseEntity<ApiResponse> getByShopId(@PathVariable("details") String details) throws ServiceException {

@@ -12,7 +12,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-@Entity
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Entity @Data @NoArgsConstructor
 public class Shop implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -50,87 +53,5 @@ public class Shop implements Serializable{
 	
 	@OneToMany(mappedBy = "shop", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
 	private Set<Product> prodcut;
-
-
-	public Boolean getStatus() {
-		return status;
-	}
-
-	public void setStatus(Boolean status) {
-		this.status = status;
-	}
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public String getShopName() {
-		return shopName;
-	}
-
-	public void setShopName(String shopName) {
-		this.shopName = shopName;
-	}
-
-	public String getGeolocation() {
-		return geolocation;
-	}
-
-	public void setGeolocation(String geolocation) {
-		this.geolocation = geolocation;
-	}
-
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
-	public String getCity() {
-		return city;
-	}
-
-	public void setCity(String city) {
-		this.city = city;
-	}
-
-	public Integer getPincode() {
-		return pincode;
-	}
-
-	public void setPincode(Integer pincode) {
-		this.pincode = pincode;
-	}
-
-	public String getCountry() {
-		return country;
-	}
-
-	public void setCountry(String country) {
-		this.country = country;
-	}
-
-	public String getLastupdated() {
-		return lastupdated;
-	}
-
-	public void setLastupdated(String lastupdated) {
-		this.lastupdated = lastupdated;
-	}
-
-	public String getShopCode() {
-		return shopCode;
-	}
-
-	public void setShopCode(String shopCode) {
-		this.shopCode = shopCode;
-	}
-
 
 }

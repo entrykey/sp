@@ -45,4 +45,6 @@ public class ShopServiceImpl implements ShopService{
 		return shopRepo.findByStatus(true);
 	}
 	
+	
+	
 }

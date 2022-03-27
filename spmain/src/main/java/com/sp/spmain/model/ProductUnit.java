@@ -6,7 +6,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Entity
+import lombok.Data;
+
+@Entity @Data
 public class ProductUnit {
 
 	@Id
@@ -18,29 +20,5 @@ public class ProductUnit {
 	
 	@Column(length = 50)
 	private String unitName;
-	
-	public Integer getId() {
-		return id;
-	}
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public Integer getNos() {
-		return nos;
-	}
-
-	public void setNos(Integer nos) {
-		this.nos = nos;
-	}
-
-	public String getUnitName() {
-		return unitName;
-	}
-
-	public void setUnitName(String unitName) {
-		this.unitName = unitName;
-	}
-	
 }
