@@ -9,10 +9,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
-
-import com.sp.spmain.common.bean.order.PaymentDetailsDto;
 
 import lombok.Data;
 
@@ -47,21 +46,25 @@ public class Product implements Serializable{
 	@Column
 	private Double percentage;
 	
-	@Column(length = 100)
-	private String image;
+	@Lob
+    @Column(name = "image", columnDefinition="BLOB")
+    private byte[] image;
 	
 	@Transient
 	private String unitInfo;
 	
+	@Transient
+	private String imageUrl;
+	
 	@Column
 	private Boolean status;
 	
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name = "shopId", insertable = false, updatable = false)
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "shopId")
 	private Shop shop;
 	
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name = "unitId", insertable = false, updatable = false)
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "unitId")
 	private ProductUnit productUnit;
 
 }

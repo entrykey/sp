@@ -16,7 +16,7 @@ public interface ShopRepo extends JpaRepository<Shop, Long> {
 	Shop findByIdAndStatus(Integer id,Boolean status);
 	@Query("select s.id,s.shopName,s.shopCode,s.geolocation from Shop s where s.status is true")
 	public List<Shop> getAllByGeoLocation();
-	
+	Shop findByShopName(String ShopName);
 
 }
 

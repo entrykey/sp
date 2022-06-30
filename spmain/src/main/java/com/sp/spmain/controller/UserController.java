@@ -1,36 +1,42 @@
 package com.sp.spmain.controller;
 
-
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.google.zxing.EncodeHintType;
 import com.google.zxing.NotFoundException;
 import com.google.zxing.WriterException;
+import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 import com.sp.spmain.temp.service.OtpServiceImpl;
 import com.sp.spmain.utility.ZxingBarcodeGenerator;
-import java.util.HashMap;
-import java.util.Map;
-import com.google.zxing.EncodeHintType;
-import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
+
 
 @RestController
 public class UserController {
 	
-		@Autowired
-	    OtpServiceImpl otpServiceImpl;
-	    
+	 	@Autowired OtpServiceImpl otpServiceImpl;
+	 
 		/*
-		 * @GetMapping("/") public String welcome() {
-		 * 
-		 * 
-		 * return "Welcome to smart Pay..."; }
+		 * @GetMapping("/") public String welcome() { return "Welcome to smart Pay...";
+		 * }
 		 */
-		
+	 	
+	 	@RequestMapping(value = "/", method = RequestMethod.GET)
+	 	public ModelAndView method() {
+	 	    return new ModelAndView("redirect:" + "/home");
+	 	}
+	 	
 		@GetMapping(value = "/otp")
 		public Boolean opttest() { 
-			return otpServiceImpl.sendOtp("9809582099","1254");
+			return true;
 		}
 		
 		
@@ -42,7 +48,7 @@ public class UserController {
 		 String data = "123123123123";
 		
 		 // The path where the image will get saved
-		 String path = "demo.png";
+		 String path = "src/main/resources/static/qr/demo.png";
 		
 		 // Encoding charset
 		 String charset = "UTF-8";

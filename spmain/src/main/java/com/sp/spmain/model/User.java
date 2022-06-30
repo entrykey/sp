@@ -1,6 +1,6 @@
 package com.sp.spmain.model;
 
-import java.util.Set;
+import java.util.Collection;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -9,14 +9,21 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
-@Data @NoArgsConstructor
+@Data @NoArgsConstructor @ToString @AllArgsConstructor
+@JsonIgnoreProperties({ "password", "token" })
 public class User {
 
 	@Id
@@ -25,6 +32,9 @@ public class User {
 
 	@Column(length = 50)
 	private String username;
+	
+	@Column(length = 50)
+	private String name;
 
 	private String password;
 	
@@ -41,8 +51,13 @@ public class User {
 
 	private Boolean token;
 	
-	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-	private Set<Role> role;
+	@JsonBackReference
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(
+        name = "users_roles",
+        joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),    
+        inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
 
-	
+    private Collection <Role> roles;
+
 }

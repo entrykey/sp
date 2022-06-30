@@ -1,11 +1,13 @@
 package com.sp.spmain.service.Impl;
 
 import java.util.List;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sp.spmain.common.bean.Validations;
+import com.sp.spmain.dto.ShopSaveDto;
 import com.sp.spmain.exception.ValidationException;
 import com.sp.spmain.model.Shop;
 import com.sp.spmain.repo.ShopRepo;
@@ -44,7 +46,30 @@ public class ShopServiceImpl implements ShopService{
 	public List<Shop> getAllByGeolocation(Boolean status) {
 		return shopRepo.findByStatus(true);
 	}
-	
-	
+
+	@Override
+	public Boolean saveShop(ShopSaveDto shopSaveDto) throws ValidationException{
+		if(shopSaveDto!=null) {
+		if(shopSaveDto.getShopName()!=null && shopSaveDto.getShopName().length()>1) {
+			if(shopRepo.findByShopName(shopSaveDto.getShopName())==null){
+				Shop shop = new Shop();
+				Random random = new Random(); 
+				shop.setShopName(shopSaveDto.getShopName());
+				shop.setGeolocation(shopSaveDto.getLatitude()+","+shopSaveDto.getLongitude());
+				shop.setAddress(shopSaveDto.getAddress());
+				shop.setCity(shopSaveDto.getCity());
+				shop.setPincode(shopSaveDto.getPincode());
+				shop.setStatus(true);
+				shop.setShopCode(shopSaveDto.getShopName().substring(0, 4).toUpperCase()+random.nextInt(1000));
+				shopRepo.save(shop);
+				return true;
+				}
+			else {
+				throw new ValidationException("This shop name already there...");
+			}
+			}
+		}
+		return false;
+	}	
 	
 }

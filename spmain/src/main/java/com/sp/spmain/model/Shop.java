@@ -51,7 +51,9 @@ public class Shop implements Serializable{
 	@Column
 	private Boolean status;
 	
-	@OneToMany(mappedBy = "shop", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-	private Set<Product> prodcut;
+	/*
+	 * @OneToMany(mappedBy = "shop", fetch = FetchType.LAZY,cascade =
+	 * CascadeType.ALL) private Set<Product> prodcut;
+	 */
 
 }

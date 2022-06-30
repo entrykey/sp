@@ -1,0 +1,48 @@
+<!-- {{resp|json}} -->
+<section class="section">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">{{pageListTitle}}</h5>
+              <!-- Table with hoverable rows -->
+              <table class="table table-hover">
+                <thead>
+                  <tr> 
+                    <th scope="col">#</th>
+                    <th scope="col">Product</th>
+                    <th scope="col">Barcode</th>
+                    <th scope="col">Shop</th>
+                    <th scope="col">Unit</th>
+                    <th scope="col">mrp</th>
+                    <th scope="col">offerPrice</th>
+                    <th scope="col">cgst</th>
+                    <th scope="col">sgst</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="rsp in resp" class=hidels{{rsp.id}}>
+                    <th scope="row">{{$index + 1}}</th>
+                    <td>{{rsp.name}}</td>
+                    <td>{{rsp.barcode}}</td>
+                    <td>{{rsp.shop.shopName}}</td>
+                    <td>{{rsp.productUnit.unitName}}</td>
+                    <td>{{rsp.mrp}}</td>
+                    <td>{{rsp.offerPrice}} <i>({{rsp.percentage}}%)</i></td>
+                    <td>{{rsp.cgst}}</td>
+                    <td>{{rsp.sgst}}</td>
+                    <td><img src='{{imgurl}}{{rsp.id}}'  width="50" height="50"></td>
+                    <td><i ng-click="deleteProduct(rsp.id)" class="bi bi-trash"></i></td>
+                  </tr>
+                
+                </tbody>
+              </table>
+              <!-- End Table with hoverable rows -->
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>

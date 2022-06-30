@@ -12,8 +12,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.sp.spmain.service.Impl.MyUserDetailsService;
 
-
-
 @EnableWebSecurity
 public class SpSecurityConfiguration extends WebSecurityConfigurerAdapter{
 	
@@ -31,8 +29,8 @@ public class SpSecurityConfiguration extends WebSecurityConfigurerAdapter{
 		http
 		
 		.authorizeRequests()
-		.antMatchers("/assets/**","/templates/**","/resources/**","/spprod/**","/spshop/**","/sporder/**","/temp/**").permitAll()
-		//.antMatchers("/**").authenticated()
+		.antMatchers("/assets/**","/templates/**","/resources/**","/spprod/**","/spshop/**","/sporder/**","/temp/**","/qr/**").permitAll()
+		.antMatchers("/**").authenticated()
 		.and()
 		.formLogin()
 		//.loginPage("/")

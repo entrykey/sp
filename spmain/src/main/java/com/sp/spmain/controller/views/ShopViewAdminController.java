@@ -12,4 +12,6 @@ public class ShopViewAdminController {
 	 public String shopList(){ return "shop/list"; }
 	 @GetMapping("/shop/add") 
 	 public String shopAdd(){ return "shop/add"; }
+	 
+	 
 }
