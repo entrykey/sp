@@ -165,6 +165,15 @@ spApp.controller('ProductListController', function($scope,$http,$location) {
 			    setAlert(response);
 			  });
 	    };
+	    
+	  $scope.editProduct = function(pid) {
+		  var sopData = {  
+					shopId:pid,	
+		   };
+		  $("#basicModal").show();
+		  
+	    };
+	    
 	  
 });
 
