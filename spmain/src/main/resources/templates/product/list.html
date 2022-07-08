@@ -5,7 +5,7 @@
           <div class="card">
             <div class="card-body">
             <div class="row">
-            
+             
     <div class="col">
       <h5 class="card-title">{{pageListTitle}}</h5>
     </div>
@@ -64,7 +64,10 @@
           </div>
         </div>
       </div>
+     
     </section>
+    <pre>{{resp}}</pre>
+    
     
     
               <!-- Basic Modal -->
@@ -78,17 +81,18 @@
                     </div>
                     <div class="modal-body">
                       
-                      
+                    -<pre>{{sedit.productUnit}}</pre>-
                       <div class="row">
 		<div class="col-lg-12">
 			<div class="card">
 				<div class="card-body">
-					<h5 class="card-title">{{pageTitle}}</h5>
+					<h5 class="card-title">Edit Prodcut</h5>
 					<!-- General Form Elements -->
+					
 					<form class="row g-3">
 						<div class="col-md-12">
 							<label for="inputState" class="form-label">Select
-								Shopp:{{shopeSelected}}</label> <select id="inputState" ng-model="shopId"
+								Shopp:{{shopeSelected}}</label> <select id="inputState" ng-model="sedit.shopid"
 								class="form-select">
 								<option value="" selected="">Choose...</option>
 								<option ng-repeat="shop in shopeList" value="{{shop.id}}">{{shop.shopName}}</option>
@@ -96,46 +100,46 @@
 						</div>
 						<div class="col-md-12">
 							<label for="inputName5" class="form-label">Name</label> <input
-								type="text" ng-model="productName" class="form-control"
+								type="text" ng-model="sedit.name" class="form-control"
 								id="inputName5">
 						</div>
 						<div class="col-md-5">
 							<label for="inputEmail5" class="form-label">Barcode</label> <input
-								type="text" maxlength="13" numbers-only ng-model="barcode" class="form-control"
+								type="text" maxlength="13" numbers-only ng-model="sedit.barcode" class="form-control"
 								id="inputEmail5">
 						</div>
 						<div class="col-md-5">
 							<label for="inputPassword5" class="form-label">Image
-								Upload</label> <input file-model="file" ng-model="pimage" class="form-control" type="file" id="formFile">
+								Upload</label> <input file-model="file" ng-model="sedit.image" class="form-control" type="file" id="formFile">
 								
 
 						</div>
 						<div class="col-md-5">
 							<label for="inputZip" class="form-label">MRP</label> <input
-								type="text" ng-model="mrp" class="form-control" id="inputZip">
+								type="text" ng-model="sedit.mrp" class="form-control" id="inputZip">
 								
 						</div>
 
 						<div class="col-md-5">
 							<label for="inputZip" class="form-label">Offer price</label>
-							<input type="text" ng-model="offerPrice" class="form-control"
+							<input type="text" ng-model="sedit.offerPrice" class="form-control"
 								id="inputZip">
 						</div>
 
 						<div class="col-md-5">
 							<label for="inputZip" class="form-label">cgst</label> <input
-								type="text" ng-model="cgst" class="form-control" id="inputZip">
+								type="text" ng-model="sedit.cgst" class="form-control" id="inputZip">
 						</div>
 
 						<div class="col-md-5">
 							<label for="inputZip" class="form-label">sgst</label> <input
-								type="text" ng-model="sgst" class="form-control" id="inputZip">
+								type="text" ng-model="sedit.sgst" class="form-control" id="inputZip">
 						</div>
 
 						<div class="col-md-5">
 							<label for="inputState" class="form-label">Unit Type</label> <select
-								id="inputState" ng-model="unitId" class="form-select">
-								<option value="" selected="">Choose...</option>
+								id="inputState" ng-model="sedit.unitid" class="form-select">
+								<option value="{{sedit.unitId}}"  ng-selected="true" selected="selected">{{sedit.unitName}}</option>
 								<option ng-repeat="ree in respunit" value="{{ree.id}}">{{ree.unitName}}</option>
 							</select>
 						</div>

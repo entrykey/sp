@@ -170,8 +170,49 @@ spApp.controller('ProductListController', function($scope,$http,$location) {
 		  var sopData = {  
 					shopId:pid,	
 		   };
-		  $("#basicModal").show();
+		  console.log("hai"); 
 		  
+		  function search(pid){
+			    for (var i=0; i < $scope.resp.length; i++) {
+					if($scope.resp[i].id==pid){
+						$scope.resp[i].image="";
+						return $scope.resp[i];
+					}	
+			    }
+			}
+		  if(search(pid)!=null){
+				  $http({
+		    method : "POST",
+		      url : "spprod/getAllUnit",
+		  }).then(function mySuccess(response) {	
+		    $scope.respunit = response.data.data;
+		  }, function myError(response) {
+		    $scope.respunit = response.data.data;
+		  });
+	
+	  $http({
+		    method : "POST",
+		      url : "spshop/getlocations",
+		  }).then(function mySuccess(response) {
+		    $scope.shopeList = response.data.data;
+		  }, function myError(response) {
+		    $scope.shopeList = response.data.data;
+		  });
+		}
+		  $scope.sedit=search(pid);
+		  $scope.sedit.shopid=$scope.sedit.shop.id;
+		  $scope.sedit.id=$scope.sedit.id;
+		  $scope.sedit.productname=$scope.sedit.name;
+		  $scope.sedit.barcode=$scope.sedit.barcode;
+		  $scope.sedit.mrp=$scope.sedit.mrp;
+		  
+		  $scope.sedit.offer=$scope.sedit.offerPrice;
+		  $scope.sedit.sgst=$scope.sedit.sgst;
+		  $scope.sedit.cgst=$scope.sedit.cgst;
+		  $scope.sedit.unitId=$scope.sedit.productUnit.id;
+		  $scope.sedit.unitName=$scope.sedit.productUnit.unitName;
+		  
+		  $("#basicModal").show();
 	    };
 	    
 	  
