@@ -20,7 +20,6 @@ public class AdminShopController {
     public ResponseEntity<ApiResponse> saveShop(@RequestBody Shop shop) throws ServiceException {
 		ApiResponse apiResponse = new ApiResponse();
 		try {
-			System.out.println(shop);
 			apiResponse.setData(null);
 			return new ResponseEntity<>(apiResponse, HttpStatus.OK);
 		}catch(Exception e) {
