@@ -1,10 +1,15 @@
 package com.sp.spmain.service.Impl;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ResourceUtils;
 
 import com.sp.spmain.common.bean.Validations;
 import com.sp.spmain.dto.ProductSaveDto;
@@ -48,7 +53,14 @@ public class ProductServiceImpl implements ProductService{
 		product.setOfferPrice(productSaveDto.getOfferPrice());
 		product.setShop(shopRepo.findById(productSaveDto.getShopId()));
 		product.setProductUnit(productUnitRepo.findById(productSaveDto.getUnitId()));
-		product.setImage(productSaveDto.getProductImage().getBytes());
+		if(productSaveDto.getProductImage()!=null) {
+			product.setImage(productSaveDto.getProductImage().getBytes());
+		}
+		else {
+			File file = ResourceUtils.getFile("classpath:templates/noimage.jpg");
+			byte[] noImageData = Files.readAllBytes(Paths.get(file.getPath()));
+			product.setImage(noImageData);
+		}
 		productRepo.save(product);
 		return true;
 	}

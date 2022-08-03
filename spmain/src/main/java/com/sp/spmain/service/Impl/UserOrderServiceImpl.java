@@ -72,6 +72,9 @@ public class UserOrderServiceImpl implements UserOrderService  {
 			ord.setItemDes(n.getItemDes());
 			ord.setItemPrice(n.getItemPrice());
 			ord.setMrp(n.getMrp());
+			ord.setSgst(n.getSgst());
+			ord.setCgst(n.getCgst());
+			ord.setDprice(n.getOfferPrice());
 			ord.setQuantity(n.getQuantity());
 			ord.setUnitPrice(n.getUnitPrice());
 			ord.setUserOrder(entity2);

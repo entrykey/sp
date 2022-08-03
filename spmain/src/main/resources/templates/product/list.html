@@ -41,14 +41,20 @@
                   <tr ng-repeat="rsp in resp" class=hidels{{rsp.id}}>
                     <th scope="row">{{$index + 1}}</th>
                     <td>{{rsp.name}}</td>
-                    <td>{{rsp.barcode}}</td>
+                    <td>
+                    <div style="">
+					  <!-- insert your custom barcode setting your data in the GET parameter "data" -->
+					  <img width="160" alt="Barcode Generator TEC-IT" src="https://barcode.tec-it.com/barcode.ashx?data={{rsp.barcode}}&amp;code=EAN13&amp;translate-esc=true">
+					</div>
+                    </td>
                     <td>{{rsp.shop.shopName}}</td>
                     <td>{{rsp.productUnit.unitName}}</td>
                     <td>{{rsp.mrp}}</td>
                     <td>{{rsp.offerPrice}} <i>({{rsp.percentage}}%)</i></td>
                     <td>{{rsp.cgst}}</td>
                     <td>{{rsp.sgst}}</td>
-                    <td><img src='{{imgurl}}{{rsp.id}}'  width="50" height="50"></td>
+                    <td>
+                    	<img src='{{imgurl}}{{rsp.id}}'  width="50" height="50"></td>
                     <td>
                     <i ng-click="deleteProduct(rsp.id)" class="bi bi-trash"></i>
                     <i ng-click="editProduct(rsp.id)" data-bs-toggle="modal"
@@ -66,7 +72,7 @@
       </div>
      
     </section>
-    <pre>{{resp}}</pre>
+    
     
     
     
@@ -136,11 +142,12 @@
 								type="text" ng-model="sedit.sgst" class="form-control" id="inputZip">
 						</div>
 
-						<div class="col-md-5">
+						<div class="col-md-5"> {{sedit.unitId}}
 							<label for="inputState" class="form-label">Unit Type</label> <select
-								id="inputState" ng-model="sedit.unitid" class="form-select">
-								<option value="{{sedit.unitId}}"  ng-selected="true" selected="selected">{{sedit.unitName}}</option>
-								<option ng-repeat="ree in respunit" value="{{ree.id}}">{{ree.unitName}}</option>
+								id="inputState" ng-model="sedit.unitId" class="form-select">
+								
+								
+								<option value="1"  ng-selected=true>Some name</option>
 							</select>
 						</div>
 

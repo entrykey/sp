@@ -69,7 +69,6 @@ public class BillGenerateController {
 	
 	public void generatePdfFromHtml(String html) throws DocumentException, IOException {
 	    String outputFolder = System.getProperty("user.home") + File.separator + "thymeleaf.pdf";
-	    System.out.println(outputFolder);
 	    OutputStream outputStream = new FileOutputStream(outputFolder);
 	    ITextRenderer renderer = new ITextRenderer();
 	    renderer.setDocumentFromString(html);
@@ -81,12 +80,15 @@ public class BillGenerateController {
 	@GetMapping("/pimage/{pid}")
     public void ProductImageOut(@PathVariable("pid") Integer pid,HttpServletResponse resonse) throws DocumentException, IOException,ServiceException {
 			Product Product = productRepo.findById(pid);
-			System.out.println(Product.toString());
-            resonse.setContentType("application/png");
-            resonse.setHeader(HttpHeaders.CONTENT_DISPOSITION, "body;filename=pimage.png");
-            resonse.setContentLength(Product.getImage().length);
-            BufferedOutputStream outStream = new BufferedOutputStream(resonse.getOutputStream());
-            outStream.write(Product.getImage());
-            outStream.flush();
+			if(Product.getImage()!=null){
+				System.out.println(Product.toString());
+	            resonse.setContentType("application/png");
+	            resonse.setHeader(HttpHeaders.CONTENT_DISPOSITION, "body;filename=pimage.png");
+	            resonse.setContentLength(Product.getImage().length);
+	            BufferedOutputStream outStream = new BufferedOutputStream(resonse.getOutputStream());
+	            outStream.write(Product.getImage());
+	            outStream.flush();
+			}
+			
         }
 }
