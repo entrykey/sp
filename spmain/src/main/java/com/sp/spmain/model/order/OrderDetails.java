@@ -26,8 +26,12 @@ public class OrderDetails {
 	public String itemDes;
 	public Integer quantity;
 	private Double mrp;
+	private Double sgst;
+	private Double dprice;
+	private Double cgst;
 	private Double unitPrice;
 	private Double itemPrice;
+	private String date;
 	
 	@JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
