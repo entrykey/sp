@@ -9,8 +9,12 @@ step 2 : create table name sp8
 step 3 : configure the db username password as below.
 
 
+
 spring.datasource.url=jdbc:mysql://localhost:3306/sp8
+
 spring.datasource.username=root
+
 spring.datasource.password=
+
 
 Stp 4 : run the application
