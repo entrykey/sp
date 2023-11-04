@@ -8,9 +8,6 @@ public class OderItemDto {
 	public String itemDes;
 	public Integer quantity;
 	private Double mrp;
-	private Double sgst;
-	private Double cgst;
-	private Double offerPrice;
 	private Double unitPrice;
 	private Double itemPrice;
 }
